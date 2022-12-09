@@ -27,13 +27,6 @@ export default function Login() {
     lastName: actionData?.fields?.firstName || '',
   })
 
-  const newState = {
-    email: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-  }
-
   // Updates the form data when an input changes
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -47,20 +40,23 @@ export default function Login() {
       <div className='h-full justify-center items-center flex flex-col gap-y-4'>
         <button
           onClick={() => setAction(action == 'login' ? 'register' : 'login')}
-          className='absolute top-8 right-8 rounded-xl bg-yellow-300 font-semibold text-blue-600 px-3 py-2 transition duration-300 ease-in-out hover:bg-yellow-400 hover:-translate-y-1'
+          className='absolute top-8 right-8 rounded-xl bg-gray-400 bg-opacity-50 font-semibold text-red-200 px-3 py-2 transition duration-300 ease-in-out hover:bg-opacity-75 hover:-translate-y-1'
         >
           {action === 'login' ? 'Sign Up' : 'Sign In'}
         </button>
-        <h2 className='text-5xl font-extrabold text-yellow-300'>
-          Welcome to Kudos!
+        <h2 className='text-5xl font-extrabold text-red-200'>
+          Welcome to <span>trib</span>!
         </h2>
         <p className='font-semibold text-slate-300'>
           {action === 'login'
-            ? 'Log In To Give Some Praise!'
+            ? 'Log In To Start Party!'
             : 'Sign Up To Get Started!'}
         </p>
 
-        <form method='POST' className='rounded-2xl bg-gray-200 p-6 w-96'>
+        <form
+          method='POST'
+          className='rounded-2xl bg-gray-400 bg-opacity-25 p-6 w-96'
+        >
           <div className='text-xs font-semibold text-center tracking-wide text-red-500 w-full'>
             {actionData?.error}
           </div>
@@ -103,7 +99,7 @@ export default function Login() {
               type='submit'
               name='_action'
               value={action}
-              className='rounded-xl mt-2 bg-yellow-300 px-3 py-2 text-blue-600 font-semibold transition duration-300 ease-in-out hover:bg-yellow-400 hover:-translate-y-1'
+              className='rounded-xl mt-2 bg-gray-400 bg-opacity-50 px-3 py-2 text-red-200 font-semibold transition duration-300 ease-in-out hover:bg-opacity-75 hover:-translate-y-1'
             >
               {action === 'login' ? 'Sign In' : 'Sign Up'}
             </button>

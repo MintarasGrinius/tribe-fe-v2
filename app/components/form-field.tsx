@@ -25,7 +25,7 @@ export function FormField({
 
   return (
     <>
-      <label htmlFor={htmlFor} className='text-blue-600 font-semibold'>
+      <label htmlFor={htmlFor} className='text-red-200 font-semibold'>
         {label}
       </label>
       <input

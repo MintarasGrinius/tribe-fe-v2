@@ -17,51 +17,37 @@ model User {
   email     String   @unique
   password  String
   profile   Profile
-  authoredKudos Kudo[]  @relation("AuthoredKudos")
-  kudos Kudo[] @relation("RecievedKudos")
 }
 
 type Profile {
   firstName String
   lastName  String
-  department Department? @default(MARKETING)
   profilePicture String?
 }
 
-enum Emoji {
-  THUMBSUP
-  PARTY
-  HANDSUP
+type Event {
+  id            Int
+  organizer_id  Int
+  created_at    DateTime
+  updated_at    DateTime
 }
 
-enum Department {
-  MARKETING
-  SALES
-  ENGINEERING
-  HR
+type EventDetail  {
+   id           Int
+   capacity     Int
+   description  String
+   dress_code   String
+   own_drinks   Boolean
+   location     String
+   time       DateTime
+   title      String
+   event_id     Int
+   created_at   String
+   updated_at   String
+   category     String
+   age_group    AgeGroup
 }
-
-enum Color {
-  RED
-  GREEN
-  YELLOW
-  BLUE
-  WHITE
-}
-
-type KudoStyle {
-  backgroundColor Color @default(YELLOW)
-  textColor       Color @default(WHITE)
-  emoji           Emoji @default(THUMBSUP)
-}
-
-model Kudo {
-  id          String     @id @default(auto()) @map("_id") @db.ObjectId
-  message     String
-  createdAt   DateTime   @default(now())
-  style       KudoStyle?
-  author      User       @relation(references: [id], fields: [authorId], "AuthoredKudos")
-  authorId    String     @db.ObjectId
-  recipient   User       @relation(references: [id], fields: [recipientId], "RecievedKudos")
-  recipientId String     @db.ObjectId
+type AgeGroup {
+  from  Int
+  to    Int
 }
