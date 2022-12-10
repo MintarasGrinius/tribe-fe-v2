@@ -3,7 +3,7 @@ import { Menu } from './menu'
 
 const SideBar = () => {
   return (
-    <div className='rounded-xl p-3 w-60 bg-gradient-to-b from-neutral-700 to-neutral-900'>
+    <div className='flex flex-col rounded-xl p-3 w-60 bg-gradient-to-b from-neutral-700 to-neutral-900'>
       <div className='flex justify-center h-12 text-white items-center flex-wrap'>
         <div className='flex max-w-screen-sm overflow-visible pr-3'>
           <CelebrationIcon

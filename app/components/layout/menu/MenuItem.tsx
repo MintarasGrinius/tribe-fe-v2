@@ -16,7 +16,7 @@ const MenuItem = ({ item: { path, name } }: Props) => {
       className={classNames(
         'mt-2 text-white rounded-lg h-9 flex justify-center items-center',
         {
-          'bg-gradient-to-b from-rose-300 to-rose-400': pathname === path,
+          'bg-gradient-to-b from-rose-300 to-rose-400': pathname.includes(path),
           'bg-opacity-25 bg-rose-300': pathname !== path,
         }
       )}

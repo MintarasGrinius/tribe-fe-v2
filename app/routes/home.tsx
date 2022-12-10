@@ -1,6 +1,7 @@
 import type { LoaderFunction } from '@remix-run/node'
 import { requireUserId } from '~/utils/auth.server'
 import Layout from '~/components/layout'
+import { Outlet } from '@remix-run/react'
 
 export const loader: LoaderFunction = async ({ request }) => {
   const userId = await requireUserId(request)
@@ -11,7 +12,9 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function Home() {
   return (
     <Layout>
-      <div className='h-full flex text-black'>Home</div>
+      <div className='h-full flex text-black'>
+        <Outlet />
+      </div>
     </Layout>
   )
 }
