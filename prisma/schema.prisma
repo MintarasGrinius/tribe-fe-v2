@@ -17,37 +17,32 @@ model User {
   email     String   @unique
   password  String
   profile   Profile
+  events    Event[]   @relation("Events")
 }
 
 type Profile {
-  firstName String
-  lastName  String
-  profilePicture String?
+  firstName       String
+  lastName        String
+  profilePicture  String?
 }
 
-type Event {
-  id            Int
-  organizer_id  Int
-  created_at    DateTime
-  updated_at    DateTime
+model Event {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  organizer    User     @relation(fields: [organizerId], references: [id], "Events")
+  organizerId  String   @db.ObjectId
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  eventDetails EventDetail?
 }
 
-type EventDetail  {
-   id           Int
-   capacity     Int
-   description  String
-   dress_code   String
-   own_drinks   Boolean
-   location     String
-   time       DateTime
-   title      String
-   event_id     Int
-   created_at   String
-   updated_at   String
-   category     String
-   age_group    AgeGroup
-}
-type AgeGroup {
-  from  Int
-  to    Int
+model EventDetail  {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  event        Event    @relation(fields: [eventId], references: [id])
+  eventId      String   @unique @db.ObjectId
+  description  String
+  location     String
+  time         String
+  title        String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }

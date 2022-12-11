@@ -605,10 +605,6 @@ video {
   height: 3rem;
 }
 
-.h-1 {
-  height: 0.25rem;
-}
-
 .h-\[1px\] {
   height: 1px;
 }
@@ -645,12 +641,24 @@ video {
   width: 15rem;
 }
 
-.w-1 {
-  width: 0.25rem;
-}
-
 .w-screen {
   width: 100vw;
+}
+
+.w-10 {
+  width: 2.5rem;
+}
+
+.w-40 {
+  width: 10rem;
+}
+
+.w-\[800px\] {
+  width: 800px;
+}
+
+.w-\[500px\] {
+  width: 500px;
 }
 
 .max-w-screen-sm {
@@ -691,6 +699,10 @@ video {
 
 .justify-center {
   justify-content: center;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .gap-y-4 {
