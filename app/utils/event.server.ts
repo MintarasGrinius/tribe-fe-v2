@@ -36,3 +36,30 @@ export const createEvent = async (userId: string, body: any) => {
     ),
   })
 }
+
+export const getEvents = async () => {
+  return await prisma.eventDetail.findMany({
+    select: {
+      description: true,
+      time: true,
+      title: true,
+      event: {
+        select: {
+          organizer: {
+            select: {
+              profile: {
+                select: {
+                  firstName: true,
+                  lastName: true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    // include: {
+    //   event: true,
+    // },
+  })
+}
