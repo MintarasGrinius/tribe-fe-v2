@@ -1,9 +1,17 @@
 import type { LoaderFunction } from '@remix-run/node'
+import { redirect } from '@remix-run/node'
 import Layout from '~/components/layout'
 import { Outlet, useLoaderData } from '@remix-run/react'
 import { getEvents } from '~/utils/event.server'
+import { getUserSession } from '~/utils/auth.server'
 
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async ({ request }) => {
+  const session = await getUserSession(request)
+  const userId = session.get('userId')
+  if (!userId || typeof userId !== 'string') {
+    throw redirect(`/login`)
+  }
+
   const events = await getEvents()
 
   return events
@@ -31,9 +39,7 @@ export default function Home() {
 
                     <header className='flex items-center justify-between leading-tight p-2 md:p-4'>
                       <h1 className='text-lg'>
-                        <div className='no-underline hover:underline text-black'>
-                          {card.title}
-                        </div>
+                        <div className='text-black'>{card.title}</div>
                       </h1>
                       <p className='text-grey-darker text-sm'>
                         {card?.time.slice(0, 10)}
@@ -41,7 +47,7 @@ export default function Home() {
                     </header>
 
                     <footer className='flex items-center justify-between leading-none p-2 md:p-4'>
-                      <div className='flex items-center no-underline hover:underline text-black'>
+                      <div className='flex items-center text-black'>
                         <img
                           alt='Placeholder'
                           className='block rounded-full'

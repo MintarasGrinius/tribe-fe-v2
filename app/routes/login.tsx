@@ -35,77 +35,75 @@ export default function Login() {
   }
 
   return (
-    <Layout>
-      <div className='h-full justify-center items-center flex flex-col gap-y-4'>
-        <button
-          onClick={() => setAction(action == 'login' ? 'register' : 'login')}
-          className='absolute top-8 right-8 rounded-xl bg-gray-400 bg-opacity-50 font-semibold text-red-200 px-3 py-2 transition duration-300 ease-in-out hover:bg-opacity-75 hover:-translate-y-1'
-        >
-          {action === 'login' ? 'Sign Up' : 'Sign In'}
-        </button>
-        <h2 className='text-5xl font-extrabold text-red-200'>
-          Welcome to <span>trib</span>!
-        </h2>
-        <p className='font-semibold text-slate-300'>
-          {action === 'login'
-            ? 'Log In To Start Party!'
-            : 'Sign Up To Get Started!'}
-        </p>
+    <div className='bg-neutral-700 h-screen justify-center items-center flex flex-col gap-y-4'>
+      <button
+        onClick={() => setAction(action == 'login' ? 'register' : 'login')}
+        className='absolute top-8 right-8 rounded-xl bg-gray-400 bg-opacity-50 font-semibold text-red-200 px-3 py-2 transition duration-300 ease-in-out hover:bg-opacity-75 hover:-translate-y-1'
+      >
+        {action === 'login' ? 'Sign Up' : 'Sign In'}
+      </button>
+      <h2 className='text-5xl font-extrabold text-red-200'>
+        Welcome to <span>trib</span>!
+      </h2>
+      <p className='font-semibold text-slate-300'>
+        {action === 'login'
+          ? 'Log In To Start Party!'
+          : 'Sign Up To Get Started!'}
+      </p>
 
-        <form
-          method='POST'
-          className='rounded-2xl bg-gray-400 bg-opacity-25 p-6 w-96'
-        >
-          <div className='text-xs font-semibold text-center tracking-wide text-red-500 w-full'>
-            {actionData?.error}
-          </div>
+      <form
+        method='POST'
+        className='rounded-2xl bg-gray-400 bg-opacity-25 p-6 w-96'
+      >
+        <div className='text-xs font-semibold text-center tracking-wide text-red-500 w-full'>
+          {actionData?.error}
+        </div>
 
-          <FormField
-            htmlFor='email'
-            label='Email'
-            value={formData.email}
-            onChange={(e) => handleInputChange(e, 'email')}
-            error={actionData?.errors?.email}
-          />
-          <FormField
-            htmlFor='password'
-            type='password'
-            label='Password'
-            value={formData.password}
-            onChange={(e) => handleInputChange(e, 'password')}
-            error={actionData?.errors?.password}
-          />
-          {action === 'register' && (
-            <>
-              <FormField
-                htmlFor='firstName'
-                label='First Name'
-                onChange={(e) => handleInputChange(e, 'firstName')}
-                value={formData.firstName}
-                error={actionData?.errors?.firstName}
-              />
-              <FormField
-                htmlFor='lastName'
-                label='Last Name'
-                onChange={(e) => handleInputChange(e, 'lastName')}
-                value={formData.lastName}
-                error={actionData?.errors?.lastName}
-              />
-            </>
-          )}
-          <div className='w-full text-center'>
-            <button
-              type='submit'
-              name='_action'
-              value={action}
-              className='rounded-xl mt-2 bg-gray-400 bg-opacity-50 px-3 py-2 text-red-200 font-semibold transition duration-300 ease-in-out hover:bg-opacity-75 hover:-translate-y-1'
-            >
-              {action === 'login' ? 'Sign In' : 'Sign Up'}
-            </button>
-          </div>
-        </form>
-      </div>
-    </Layout>
+        <FormField
+          htmlFor='email'
+          label='Email'
+          value={formData.email}
+          onChange={(e) => handleInputChange(e, 'email')}
+          error={actionData?.errors?.email}
+        />
+        <FormField
+          htmlFor='password'
+          type='password'
+          label='Password'
+          value={formData.password}
+          onChange={(e) => handleInputChange(e, 'password')}
+          error={actionData?.errors?.password}
+        />
+        {action === 'register' && (
+          <>
+            <FormField
+              htmlFor='firstName'
+              label='First Name'
+              onChange={(e) => handleInputChange(e, 'firstName')}
+              value={formData.firstName}
+              error={actionData?.errors?.firstName}
+            />
+            <FormField
+              htmlFor='lastName'
+              label='Last Name'
+              onChange={(e) => handleInputChange(e, 'lastName')}
+              value={formData.lastName}
+              error={actionData?.errors?.lastName}
+            />
+          </>
+        )}
+        <div className='w-full text-center'>
+          <button
+            type='submit'
+            name='_action'
+            value={action}
+            className='rounded-xl mt-2 bg-gray-400 bg-opacity-50 px-3 py-2 text-red-200 font-semibold transition duration-300 ease-in-out hover:bg-opacity-75 hover:-translate-y-1'
+          >
+            {action === 'login' ? 'Sign In' : 'Sign Up'}
+          </button>
+        </div>
+      </form>
+    </div>
   )
 }
 

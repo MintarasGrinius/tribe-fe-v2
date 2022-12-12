@@ -8,6 +8,8 @@ import {
 } from '@remix-run/react'
 import type { MetaFunction, LinksFunction } from '@remix-run/node'
 import styles from './styles/app.css'
+import 'antd/dist/antd.css' // or 'antd/dist/antd.less'
+
 export const links: LinksFunction = () => {
   return [{ rel: 'stylesheet', href: styles }]
 }
